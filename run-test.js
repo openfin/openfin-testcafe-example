@@ -25,10 +25,13 @@ let testcafe = null;
 
     // Create and run OpenFin application using test URL
     const testApp = await fin.Application.create({
-        uuid: 'test',
-        name: 'testing',
+        uuid: 'testcafe',
+        name: 'testcafe',
         url: remoteConnection.url,
-        autoShow: true
+        autoShow: true,
+        defaultHeight: 800,
+        defaultWidth: 1200,
+        saveWindowState: false
     });
 
     testApp.run();
