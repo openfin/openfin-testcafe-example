@@ -14,7 +14,7 @@ We make use of the [remote browser](https://devexpress.github.io/testcafe/docume
 
 First we initialize the test runner:
 
-```
+```javascript
     testcafe = await createTestCafe('localhost', 1337, 1338);
     runner = testcafe.createRunner();
     const remoteConnection = await testcafe.createBrowserConnection();
@@ -25,7 +25,7 @@ This returns a remote connection object that contains the URL we will use to lau
 
 Using the Node.js Adapter we can connect to a runtime and launch an OpenFin app using the URL returned by the remote connection.
 
-```
+```javascript
     // Connect to a runtime
     const fin = await connect({
         uuid: 'openfin-runtime-connection',
@@ -52,9 +52,9 @@ Using the Node.js Adapter we can connect to a runtime and launch an OpenFin app 
 ```
 
 ### Running the tests
-Once the connection is ready, we let the test runner know that we want to run the tests.
+Once the connection is ready, we let the test runner know that we want to run the tests. Once the tests run we close the test runner and the OpenFin app.
 
-```
+```javascript
     remoteConnection.once('ready', async () => {
         await runner.src('tests.js');
         await runner.browsers(remoteConnection);
